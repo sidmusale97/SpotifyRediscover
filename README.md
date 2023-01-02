@@ -1,2 +1,1 @@
 # SpotifyRediscover
-Rediscover Your 
