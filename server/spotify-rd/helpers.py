@@ -8,6 +8,3 @@ def random_song():
     rand_song = {'id': {c: random.uniform(0,1) for c in cols} }
     return rand_song
 
-    
-
-print(random_song())

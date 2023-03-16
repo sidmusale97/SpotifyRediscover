@@ -37,6 +37,15 @@ def create_app(test_config = None):
 
     @app.route('/get-next-song')
     def getNextSong():
+        ids = []
+        limit = 50
+        total = sp.current_user_saved_tracks()['total']
+
+        for i in range(0,total, limit):
+            batch = sp.current_user_saved_tracks(offset=i, limit=limit)['items']
+            batch_ids = [item['track']['id'] for item in batch]
+            ids += batch_ids
+        
         intent = request.args.get('intent')
         c_id = request.args.get('c_id')
         if(intent == 'pos'):
@@ -44,6 +53,8 @@ def create_app(test_config = None):
         else:
             return 'neg'
 
-            
+    def parseTrackIds(tracks):
+        ids = [track in tracks]
+        
     
     return app
